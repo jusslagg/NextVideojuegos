@@ -8,18 +8,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        primery: "#30bbf2",
-        secondary: "#eb4034",
-        success: "#00c9a7",
-        danger: "#ff0000",
-        warning: "#ffc107",
-        info: "#2196f3",
-        light: "#f8f9fa",
-        dark: "#343a40",
+        dark: "#1a202c", // Fondo oscuro
+        electric: "#00ffff", // Azul eléctrico
+      },
+      fontFamily: {
+        sans: ['"Press Start 2P"', "cursive"], // Fuente retro de videojuegos
+      },
+      boxShadow: {
+        neon: "0 0 10px 2px rgba(0, 255, 255, 0.7)", // Efecto de sombra neón
+        glow: "0 0 20px 5px rgba(255, 0, 255, 0.6)", // Efecto glow para botones
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };

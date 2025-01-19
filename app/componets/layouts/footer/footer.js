@@ -1,88 +1,102 @@
 "use client";
-const Footer = () => {
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    // Handle newsletter submission logic here
-  };
 
+const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Contact Information */}
-          <div>
-            <h1 className="text-xl font-bold mb-4">Contact Us</h1>
-            <p className="mb-2">123 E-Commerce Street</p>
-            <p className="mb-2">New York, NY 10001</p>
-            <p className="mb-2">Phone: (555) 123-4567</p>
+    <footer className="bg-dark text-white py-16">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          {/* Información de contacto */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-electric">Contacto</h2>
+            <p>Av. 9 de Julio 1234, Buenos Aires, Argentina</p>
+            <p>Obelisco, CABA</p>
+            <p>Teléfono: (011) 1234-5678</p>
             <p>Email: info@ecommerce.com</p>
           </div>
 
-          {/* Newsletter Signup */}
-          <div>
-            <h2 className="text-xl font-bold mb-4">Newsletter</h2>
-            <form onSubmit={handleNewsletterSubmit}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full p-2 mb-2 text-gray-900 rounded"
-                required
-              />
-              <button
-                aria-label="Subscribe"
-                type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul>
-              <li className="mb-2">
-                <a href="/about" className="hover:text-blue-400">About Us</a>
+          {/* Enlaces rápidos */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-electric">
+              Enlaces rápidos
+            </h2>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="/about"
+                  className="hover:text-electric transition-colors"
+                >
+                  Sobre nosotros
+                </a>
               </li>
-              <li className="mb-2">
-                <a href="/faq" className="hover:text-blue-400">FAQ</a>
+              <li>
+                <a
+                  href="/faq"
+                  className="hover:text-electric transition-colors"
+                >
+                  Preguntas frecuentes
+                </a>
               </li>
-              <li className="mb-2">
-                <a href="/shipping" className="hover:text-blue-400">Shipping Info</a>
+              <li>
+                <a
+                  href="/shipping"
+                  className="hover:text-electric transition-colors"
+                >
+                  Información de envío
+                </a>
               </li>
-              <li className="mb-2">
-                <a href="/privacy" className="hover:text-blue-400">Privacy Policy</a>
+              <li>
+                <a
+                  href="/privacy"
+                  className="hover:text-electric transition-colors"
+                >
+                  Política de privacidad
+                </a>
               </li>
             </ul>
           </div>
 
-          {/* Social Media */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-blue-400">
-                <p>Facebook</p>
+          {/* Redes sociales */}
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-electric">Síguenos</h2>
+            <div className="flex space-x-6">
+              <a
+                href="#"
+                className="text-electric hover:text-white transition-all"
+              >
+                Facebook
               </a>
-              <a href="#" className="hover:text-blue-400">
-                <p>Twitter</p>
+              <a
+                href="#"
+                className="text-electric hover:text-white transition-all"
+              >
+                Twitter
               </a>
-              <a 
-                href="https://www.instagram.com/educacioncristian/" 
-                rel="noopener noreferrer" 
-                target="_blank" 
-                className="hover:text-blue-400">
-                <p>Instagram</p>
+              <a
+                href="https://www.instagram.com/educacioncristian/"
+                rel="noopener noreferrer"
+                target="_blank"
+                className="text-electric hover:text-white transition-all"
+              >
+                Instagram
               </a>
-              <a href="#" className="hover:text-blue-400">
-                <p>Linkedin</p>
+              <a
+                href="#"
+                className="text-electric hover:text-white transition-all"
+              >
+                LinkedIn
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p>&copy; {new Date().getFullYear()} E-Commerce. All rights reserved.</p>
+        <div className="border-t border-gray-800 mt-12 pt-6 text-center text-gray-400">
+          <p>
+            &copy; {new Date().getFullYear()} GameSphere. Todos los derechos
+            reservados.
+          </p>
+          <div className="flex justify-center items-center mt-4">
+            <img src="/path/to/logoApp.png" alt="Logo" className="h-24" />
+          </div>
         </div>
       </div>
     </footer>
