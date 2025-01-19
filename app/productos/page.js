@@ -1,56 +1,105 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
-import { productos } from "../mock/productos";
+import { productos } from "../mock/productos"; // Asegúrate de que los productos tengan las propiedades correctas
 import { useRouter } from "next/navigation";
 
 export default function Productos() {
-    const [filterProducts, setFilterProducts] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("");
-    const router = useRouter();
+  const [filterProducts, setFilterProducts] = useState([]);
+  const router = useRouter();
 
-    useEffect(() => {
-        setFilterProducts(productos);
-    }, []);
+  useEffect(() => {
+    setFilterProducts(productos); // Simulamos que obtenemos los productos de alguna base de datos o API
+  }, []);
 
-    const handleFilter = () => {
-        router.push(`/productos/${selectedCategory}`);
-    };
+  const handleCategoryClick = (category) => {
+    // Filtramos productos por la categoría seleccionada
+    if (category === "Todos") {
+      setFilterProducts(productos);
+    } else {
+      const filtered = productos.filter(
+        (producto) => producto.category === category
+      );
+      setFilterProducts(filtered);
+    }
+    router.push(`/productos/${category}`);
+  };
 
-    return (
-        <main className="p-6 max-w-7xl mx-auto">
-            <h1 className="text-4xl font-bold mb-6 text-center text-blue-600">Productos</h1>
-            <div className="flex justify-center mt-8 space-x-4">
-                <select 
-                    className="bg-white border border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded shadow-md hover:bg-blue-50 transition duration-200"
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                >
-                    <option value="">Selecciona una categoría</option>
-                    {Array.from(new Set(productos.map(producto => producto.category))).map((category, index) => (
-                        <option key={index} value={category}>{category}</option>
-                    ))}
-                </select>
-                <button 
-                    onClick={handleFilter} 
-                    className="bg-blue-500 text-white font-bold py-2 px-6 rounded shadow-md hover:bg-blue-600 transition duration-200"
-                >
-                    Filtrar
-                </button>
+  const categories = Array.from(
+    new Set(productos.map((producto) => producto.category))
+  );
+  categories.unshift("Todos"); // Añadimos la opción "Todos" para mostrar todos los productos
+
+  return (
+    <main className="p-6 max-w-7xl mx-auto bg-dark text-white">
+      <h1 className="text-4xl font-bold mb-6 text-center text-electric">
+        Nuestros Videojuegos
+      </h1>
+
+      {/* Botones de categorías */}
+      <div className="flex justify-center mt-8 space-x-4">
+        {categories.map((category, index) => (
+          <button
+            key={index}
+            onClick={() => handleCategoryClick(category)}
+            className="bg-dark text-electric font-semibold py-2 px-6 rounded shadow-glow hover:bg-electric hover:text-dark transition duration-200"
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      {/* Muestra los productos filtrados */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+        {filterProducts.map(
+          ({ id, title, price, stock, imageUrl, category, trailerUrl }) => (
+            <div
+              key={id}
+              className="border border-gray-300 rounded-lg p-4 shadow-glow hover:shadow-xl transition duration-200"
+            >
+              {/* Imagen del producto o trailer en hover */}
+              <div className="relative w-full h-56 mb-4 overflow-hidden rounded-lg group">
+                {/* Imagen del juego */}
+                <img
+                  src={imageUrl}
+                  alt={title}
+                  className="object-cover w-full h-full transition duration-300 group-hover:opacity-0"
+                />
+
+                {/* Video del juego (se muestra en hover) */}
+                <div className="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition duration-300">
+                  <video
+                    src={`${trailerUrl}?autoplay=1`} // Parámetro autoplay=1 para iniciar automáticamente el video
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                  ></video>
+                </div>
+              </div>
+
+              {/* Detalles del producto */}
+              <h2 className="text-xl font-semibold mb-2 text-electric">
+                {title}
+              </h2>
+              <p className="text-lg font-bold text-gray-800">${price}</p>
+              <p className="text-sm text-gray-400 mb-2">
+                Categoría: {category}
+              </p>
+              <p className="text-sm text-gray-400">
+                Stock: {stock} disponibles
+              </p>
+
+              {/* Botón de agregar al carrito */}
+              <button
+                className="mt-4 bg-electric text-dark font-bold py-2 px-4 rounded shadow-glow hover:bg-electric hover:text-dark transition duration-200"
+                aria-label="Agregar al carrito"
+              >
+                Agregar al carrito
+              </button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
-                {filterProducts.map(({ id = '', title = '', price = 0 }) => (
-                    <div key={id} className="border border-gray-300 rounded-lg p-4 shadow-lg hover:shadow-xl transition duration-200">
-                        <h2 className="text-xl font-semibold mb-2">{title}</h2>
-                        <p className="text-lg font-bold text-gray-800">${price}</p>
-                        <button 
-                            className="mt-4 bg-blue-500 text-white font-bold py-2 px-4 rounded shadow-md hover:bg-blue-600 transition duration-200"
-                            aria-label="Agregar al carrito"
-                        >
-                            Agregar al carrito
-                        </button>
-                    </div>
-                ))}
-            </div>
-        </main>
-    );
+          )
+        )}
+      </div>
+    </main>
+  );
 }

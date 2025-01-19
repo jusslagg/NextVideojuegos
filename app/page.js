@@ -22,40 +22,9 @@ export const metadata = {
   },
 };
 
-// De forma dinámica
-// Cuando avancemos usaremos Firebase o cualquier base de datos para obtener productos
-/*
-export async function generateMetadata({ params, searchParams }, parent) {
-  const { id } = params;
-  const product = await fetch(`https://fakestoreapi.com/products/${id}`).then((res) => res.json()); // Puedes usar Firebase aquí
-  const parentMetadata = await parent;
-  return {
-    title: `Tienda de Videojuegos | ${product.title}`,
-    description: product.description,
-    openGraph: {
-      title: `Tienda de Videojuegos | ${product.title}`,
-      description: product.description,
-      url: `https://tiendavideojuegos.com/product/${id}`,
-      siteName: "Tienda de Videojuegos",
-      images: [
-        {
-          url: product.image,
-          alt: product.title,
-          title: product.title,
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
-    ...parentMetadata,
-  };
-}
-*/
-
 export default function Home() {
   return (
     <>
-      <Navbar />
       <main className="bg-dark text-white py-10">
         <h1 className="text-4xl text-electric text-center mb-8">
           Bienvenido a nuestra Tienda de Videojuegos
@@ -84,7 +53,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

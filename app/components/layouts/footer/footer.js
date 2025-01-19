@@ -72,7 +72,7 @@ const Footer = () => {
                 Twitter
               </a>
               <a
-                href="https://www.instagram.com/educacioncristian/"
+                href="https://www.instagram.com/Jusslagg/"
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-electric hover:text-white transition-all"
@@ -95,7 +95,7 @@ const Footer = () => {
             reservados.
           </p>
           <div className="flex justify-center items-center mt-4">
-            <img src="/path/to/logoApp.png" alt="Logo" className="h-24" />
+            <img src="/logoApp.png" alt="Logo" className="h-24" />
           </div>
         </div>
       </div>

@@ -36,8 +36,8 @@ const Navbar = () => {
             <Image
               src={"/logoApp.png"}
               alt="Logo"
-              width={100}
-              height={100}
+              width={500}
+              height={500}
               className="object-contain transition duration-300 hover:scale-110 hover:shadow-glow hover:brightness-110"
             />
             {/* Menú con botones estilo DaisyUI */}
