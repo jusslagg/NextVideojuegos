@@ -14,7 +14,7 @@ const MenuList = () => {
           href="/about"
           className="btn btn-ghost text-electric hover:text-white transition duration-300"
         >
-          About
+          404
         </Link>
         <Link
           href="/contacto"
