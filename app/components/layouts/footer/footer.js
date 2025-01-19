@@ -11,7 +11,7 @@ const Footer = () => {
             <p>Av. 9 de Julio 1234, Buenos Aires, Argentina</p>
             <p>Obelisco, CABA</p>
             <p>Teléfono: (011) 1234-5678</p>
-            <p>Email: info@ecommerce.com</p>
+            <p>Email: lagg312@gmail.com</p>
           </div>
 
           {/* Enlaces rápidos */}
