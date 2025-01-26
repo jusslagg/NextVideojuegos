@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { productos } from "../mock/productos"; // Asegúrate de que los productos tengan las propiedades correctas
 import { useRouter } from "next/navigation";
@@ -13,21 +14,28 @@ export default function Productos() {
 
   const handleCategoryClick = (category) => {
     // Filtramos productos por la categoría seleccionada
-    if (category === "Todos") {
-      setFilterProducts(productos);
-    } else {
+    if (category) {
       const filtered = productos.filter(
         (producto) => producto.category === category
       );
-      setFilterProducts(filtered);
+
+      // Verificamos si hay productos disponibles para la categoría
+      if (filtered.length === 0) {
+        router.push("/404"); // Redirigimos a la página de error si no hay productos
+      } else {
+        setFilterProducts(filtered); // Si se encuentran productos, actualizamos el estado
+        router.push(`/productos/${category}`); // Redirigimos a la página de categoría
+      }
+    } else {
+      setFilterProducts(productos); // Si no hay categoría, mostramos todos los productos
+      router.push("/productos"); // Redirigimos a la página general de productos
     }
-    router.push(`/productos/${category}`);
   };
 
+  // Obtenemos las categorías disponibles
   const categories = Array.from(
     new Set(productos.map((producto) => producto.category))
   );
-  categories.unshift("Todos"); // Añadimos la opción "Todos" para mostrar todos los productos
 
   return (
     <main className="p-6 max-w-7xl mx-auto bg-dark text-white">

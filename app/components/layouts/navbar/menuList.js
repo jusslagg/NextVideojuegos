@@ -11,10 +11,10 @@ const MenuList = () => {
           Home
         </Link>
         <Link
-          href="/about"
+          href="/aboutUs"
           className="btn btn-ghost text-electric hover:text-white transition duration-300"
         >
-          404
+          AboutUs
         </Link>
         <Link
           href="/contacto"
