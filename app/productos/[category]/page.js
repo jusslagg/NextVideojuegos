@@ -1,50 +1,32 @@
-import { productos } from "../../mock/productos";
-import ButtonBack from "../../components/common/button/buttonBack";
+import { useCart } from "../../components/context/CartContext"; // Importar el hook del carrito
+import Image from "next/image";
+import ButtonBack from "../../components/common/button/buttonBack"; // Ajusta esta ruta según la estructura
 
-export const metadata = {
-  title: "Videojuegos | Categoría",
-  description:
-    "Explora nuestra selección de videojuegos en diferentes categorías como acción, aventura, deportes, estrategia, y más.",
-  keywords:
-    "videojuegos, tienda de videojuegos, consolas, juegos, acción, aventura, deportes, estrategia, RPG, videojuegos online, gaming",
-  openGraph: {
-    title: "Videojuegos | Categoría",
-    description:
-      "Explora nuestra selección de videojuegos en diferentes categorías como acción, aventura, deportes, estrategia, y más.",
-    url: "https://tiendavideojuegos.com",
-    siteName: "Videojuegos",
-    images: [
-      {
-        url: "https://via.placeholder.com/1200x630.png?text=Videojuegos+Tienda", // Cambia por una imagen representativa
-        alt: "Imagen tienda videojuegos",
-      },
-    ],
-  },
-};
+const Page = ({ productos }) => {
+  const { addToCart } = useCart(); // Accedemos a la función para agregar al carrito
 
-export default function CategoryPage({ params }) {
-  const { category } = params;
-  const filteredProducts = productos.filter(
-    (producto) => producto.category === category
-  );
+  // Manejar la acción de agregar al carrito
+  const handleAddToCart = (producto) => {
+    addToCart(producto); // Agregar el producto al carrito
+  };
+
+  if (!productos || productos.length === 0) {
+    return <div>Loading...</div>; // Muestra un mensaje mientras se cargan los productos
+  }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto bg-dark text-white">
-      <h1 className="text-4xl font-bold mb-6 text-center text-electric">
-        {category}
+    <div>
+      <h1 className="text-2xl font-bold mb-4">
+        Videojuegos - {productos[0]?.category || "Categoría"}
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {filteredProducts.map((producto) => (
-          <div
-            key={producto.id}
-            className="border border-gray-300 rounded-lg p-4 shadow-glow hover:shadow-xl transition duration-300"
-          >
-            <h2 className="text-2xl font-semibold text-electric mb-4">
-              {producto.title}
-            </h2>
-            <img
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {productos.map((producto) => (
+          <div key={producto.id} className="bg-white p-4 rounded-lg shadow-md">
+            <Image
               src={producto.imageUrl}
               alt={producto.title}
+              width={500}
+              height={500}
               className="object-cover w-full h-48 mb-4 rounded-lg transition duration-300 hover:scale-105"
             />
             <p className="text-lg font-bold mb-2">${producto.price}</p>
@@ -54,6 +36,7 @@ export default function CategoryPage({ params }) {
             <button
               className="w-full bg-electric text-dark font-bold py-2 px-4 rounded shadow-glow hover:bg-electric hover:text-dark transition duration-200"
               aria-label="Agregar al carrito"
+              onClick={() => handleAddToCart(producto)} // Agregar al carrito
             >
               Agregar al carrito
             </button>
@@ -63,4 +46,6 @@ export default function CategoryPage({ params }) {
       <ButtonBack />
     </div>
   );
-}
+};
+
+export default Page;
