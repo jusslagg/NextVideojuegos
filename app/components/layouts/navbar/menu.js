@@ -3,7 +3,7 @@ import MenuList from "./menuList";
 const Menu = () => {
   return (
     <>
-      <MenuList />
+      <menuList />
     </>
   );
 };

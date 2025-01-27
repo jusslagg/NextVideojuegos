@@ -1,30 +1,8 @@
-import Image from "next/image";
-import MenuList from "./menuList"; // Asegúrate de importar el componente MenuList correctamente
+"use client"; // Esto convierte el archivo en un Client Component
 
-// Metadatos actualizados para la tienda de videojuegos
-export const metadata = {
-  title: "Tienda de Videojuegos | Inicio",
-  description:
-    "Explora nuestra tienda online de videojuegos, consolas y accesorios. Juegos para todas las plataformas y generaciones.",
-  keywords:
-    "Videojuegos, tienda de videojuegos, PS5, Xbox, Nintendo Switch, PC, juegos online, accesorios gaming, consolas, videojuegos retro, tienda de consolas, videojuegos nuevos, ofertas juegos",
-  openGraph: {
-    title: "Tienda de Videojuegos | Inicio",
-    description:
-      "Explora nuestra tienda online de videojuegos, consolas y accesorios. Juegos para todas las plataformas y generaciones.",
-    url: "https://tiendavideojuegos.com",
-    siteName: "Tienda de Videojuegos",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1515824792088-3e3a08351a5a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYW5vcmFtYXM1fDJ8fHx8fGVufDB8fHx8&ixlib=rb-4.0.3",
-        alt: "Videojuegos y consolas",
-        title: "Tienda de Videojuegos",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-};
+import Image from "next/image";
+import { FaShoppingCart } from "react-icons/fa";
+import MenuList from "./menuList";
 
 const Navbar = () => {
   return (
@@ -32,7 +10,7 @@ const Navbar = () => {
       <header className="bg-dark shadow-neon">
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo con efecto de brillo */}
+            {/* Logo principal */}
             <Image
               src={"/logoApp.png"}
               alt="Logo"
@@ -40,8 +18,20 @@ const Navbar = () => {
               height={200}
               className="object-contain transition duration-300 hover:scale-110 hover:shadow-glow hover:brightness-110"
             />
-            {/* Menú con botones estilo DaisyUI */}
+            {/* Menú */}
             <MenuList />
+            {/* Ícono del carrito en la parte derecha */}
+            <div className="relative">
+              <FaShoppingCart
+                size={30}
+                className="cursor-pointer text-white transition duration-300 hover:scale-110 hover:brightness-110"
+                onClick={() => alert("Carrito de compras")}
+              />
+              {/* Indicador de cantidad de productos en el carrito */}
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                3 {/* Aquí puedes reemplazar este valor por la cantidad real */}
+              </span>
+            </div>
           </div>
         </nav>
       </header>
