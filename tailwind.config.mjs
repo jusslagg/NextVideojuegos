@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -6,23 +7,20 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        dark: "#171717", // Fondo oscuro por defecto
-        lightBackground: "#ffffff", // Fondo blanco para modo claro
-        electric: "#00ffff", // Azul eléctrico
-        neonPink: "#ff00ff", // Color neón rosado
-        foreground: "#171717", // Texto principal
-        foregroundLight: "#ededed", // Texto para modo claro
-      },
-      fontFamily: {
-        sans: ['"Press Start 2P"', "cursive"], // Fuente retro
-      },
-      boxShadow: {
-        neon: "0 0 10px 2px rgba(0, 255, 255, 0.7)", // Efecto de sombra neón
-        glow: "0 0 20px 5px rgba(255, 0, 255, 0.6)", // Efecto glow
+    extend: {},
+    animation: {
+      "fade-in": "fadeIn 0.75s ease-out",
+    },
+    keyframes: {
+      fadeIn: {
+        "0%": { opacity: 0, transform: "translateY(10px)" },
+        "100%": { opacity: 1, transform: "translateY(0)" },
       },
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    darkTheme: "synthwave",
+    themes: ["synthwave", "dark", "emerald", "halloween"],
+  },
 };
