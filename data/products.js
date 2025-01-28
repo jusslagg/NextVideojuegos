@@ -1,6 +1,7 @@
 export const mockData = [
   {
     id: "1",
+    slug: "call-of-duty", // Slug agregado
     title: "Call of Duty",
     price: 80,
     description: "Shooter, Multijugador",
@@ -13,6 +14,7 @@ export const mockData = [
   },
   {
     id: "2",
+    slug: "vallheim", // Slug agregado
     title: "Vallheim",
     price: 40,
     stock: 5,
@@ -25,6 +27,7 @@ export const mockData = [
   },
   {
     id: "3",
+    slug: "the-last-of-us", // Slug agregado
     title: "The last of us",
     price: 80,
     stock: 5,
@@ -37,6 +40,7 @@ export const mockData = [
   },
   {
     id: "4",
+    slug: "starcraft", // Slug agregado
     title: "Starcraft",
     price: 50,
     stock: 5,
@@ -49,6 +53,7 @@ export const mockData = [
   },
   {
     id: "5",
+    slug: "super-mario", // Slug agregado
     title: "Super Mario",
     price: 70,
     stock: 5,
@@ -61,6 +66,7 @@ export const mockData = [
   },
   {
     id: "6",
+    slug: "fornite", // Slug agregado
     title: "Fornite",
     price: 50,
     stock: 5,
@@ -73,6 +79,7 @@ export const mockData = [
   },
   {
     id: "7",
+    slug: "god-of-war-ragnarok", // Slug agregado
     title: "God of War Ragnarok",
     price: 80,
     stock: 5,
@@ -85,6 +92,7 @@ export const mockData = [
   },
   {
     id: "8",
+    slug: "dead-by-daylight", // Slug agregado
     title: "Dead by Daylight",
     price: 80,
     stock: 5,

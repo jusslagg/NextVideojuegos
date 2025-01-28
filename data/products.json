@@ -1,6 +1,6 @@
 [
   {
-    "slug": 1,
+    "slug": "call-of-duty",
     "title": "Call of Duty",
     "price": 80,
     "description": "Shooter, Multijugador",
@@ -10,7 +10,7 @@
     "category": "xbox"
   },
   {
-    "slug": 2,
+    "slug": "vallheim",
     "title": "Vallheim",
     "price": 40,
     "stock": 5,
@@ -20,7 +20,7 @@
     "trailerUrl": "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310712/videoplayback_3_funtgx.mp4"
   },
   {
-    "slug": 3,
+    "slug": "the-last-of-us",
     "title": "The last of us",
     "price": 80,
     "stock": 5,
@@ -30,7 +30,7 @@
     "trailerUrl": "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310635/videoplayback_2_t8pt2d.mp4"
   },
   {
-    "slug": 4,
+    "slug": "starcraft",
     "title": "Starcraft",
     "price": 50,
     "stock": 5,
@@ -40,7 +40,7 @@
     "trailerUrl": "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310551/StarCraft_II__Heart_of_the_Swarm_-_Intro_cinem%C3%A1tica_ES_tgmq5w.mp4"
   },
   {
-    "slug": 5,
+    "slug": "super-mario",
     "title": "Super Mario",
     "price": 70,
     "stock": 5,
@@ -50,7 +50,7 @@
     "trailerUrl": "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310460/Super_Mario_Odyssey_Accolades_Trailer_-_Nintendo_Switch_yy43zg.mp4"
   },
   {
-    "slug": 6,
+    "slug": "fornite",
     "title": "Fornite",
     "price": 50,
     "stock": 5,
@@ -60,7 +60,7 @@
     "trailerUrl": "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310333/videoplayback_1_tni4sz.mp4"
   },
   {
-    "slug": 7,
+    "slug": "god-of-war-ragnarok",
     "title": "God of War Ragnarok",
     "price": 80,
     "stock": 5,
@@ -70,7 +70,7 @@
     "trailerUrl": "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310234/God_of_War_Ragnar%C3%B6k___Tr%C3%A1iler_de_la_historia___PS5_PS4_dnam8y.mp4"
   },
   {
-    "slug": 8,
+    "slug": "dead-by-daylight",
     "title": "Dead by Daylight",
     "price": 80,
     "stock": 5,
