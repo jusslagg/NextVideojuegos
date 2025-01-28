@@ -5,12 +5,21 @@ import { CartContext } from "@/app/context/CartContext";
 import GoBack from "@/components/common/buttons/GoBack";
 
 const ProductDetailCard = ({ item }) => {
+  // Verificar que 'item' existe y tiene la propiedad 'slug'
+  if (!item) {
+    return <div>Loading...</div>; // O algún indicador de carga mientras el item no está disponible
+  }
+
   const { addToCart, getTotalQuantityById } = useContext(CartContext);
-  let totalAdded = getTotalQuantityById(item.slug);
+
+  // Verifica si item tiene la propiedad slug antes de usarla
+  let totalAdded = item.slug ? getTotalQuantityById(item.slug) : 0;
+
   const addOn = (quantity) => {
     let productInCart = { ...item, quantity };
     addToCart(productInCart);
   };
+
   return (
     <section className="flex flex-row justify-center bg-base-300">
       <article className="card card-compact lg:card-side lg:w-full xl:w-5/6 bg-base-100 shadow-xl my-3">

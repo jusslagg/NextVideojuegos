@@ -6,9 +6,11 @@ import ThemeController from "../../common/themeController/ThemeController";
 import CartWidget from "@/components/common/cartWidget/CartWidget";
 
 export const metadata = {
-  title: "Logo panaderia la fika | Home",
-  description: "Ecommerce panaderia",
-  keywords: "panaderia, la fika, ecommerce",
+  title: "GameSphere | Home",
+  description:
+    "La tienda de videojuegos futurista con las mejores opciones para vos",
+  keywords:
+    "videojuegos, GameSphere, ecommerce, xbox, playstation, nintendo, pc",
 };
 
 const Navbar = () => {

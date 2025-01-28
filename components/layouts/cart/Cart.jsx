@@ -73,20 +73,27 @@ const Cart = ({ cart, deleteProductById, totalQuantity, total, clearCart }) => {
         // Cuando no hay productos en el carrito
         <div className="flex h-dvh flex-col items-center text-center py-3 mx-auto">
           <div>
+            {/* Reemplaza con el logo de la tienda de videojuegos futurista */}
             <Link href="/products/all" className="btn btn-link">
               <img
-                src={
-                  "https://res.cloudinary.com/dpisx0ysb/image/upload/v1737161717/kanellbullarImgSecondary_oivn9w.png"
-                }
-                alt="logo Kannel"
+                src="/logoApp.png" // Reemplaza con la URL de tu logo futurista
+                alt="logo de la tienda"
                 className="h-96"
               />
             </Link>
           </div>
           <div className="mx-3">
-            <h2 className="lg:text-2xl font-semibold mb-3">
-              ¡Carrito vacio! Toca a Kannel para buscar productos
+            <h2 className="lg:text-2xl font-semibold mb-3 text-4xl text-yellow-500">
+              🎮 Game Over: Carrito Vacío 🚀
             </h2>
+            <p className="text-xl font-bold">
+              ¡Volvamos a llenar el carrito con tus juegos favoritos! 🕹️
+            </p>
+          </div>
+          <div>
+            <Link href="/products/all" className="btn btn-primary mt-5">
+              Explorar Juegos
+            </Link>
           </div>
         </div>
       )}

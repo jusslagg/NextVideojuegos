@@ -5,9 +5,9 @@ import { Providers } from "./Providers";
 import { Montserrat } from "next/font/google";
 
 export const metadata = {
-  title: "La fika panaderia",
+  title: "GameSphere | Home",
   description:
-    "Somos la fika panaderia ubicada en la Florida ofrecemos una gran variedad de productos como nunca antes los has probado. Ven a conocernos!",
+    "Sumérgete en el mundo de los videojuegos con una increíble selección de títulos para todas las plataformas",
 };
 
 const montserrat = Montserrat({
