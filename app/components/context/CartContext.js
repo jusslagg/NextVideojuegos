@@ -1,23 +1,20 @@
-"use client"; // Esto es necesario en Next.js 13+ para hacer que el componente sea un cliente
+"use client"; // Asegúrate de que este archivo sea un componente del cliente
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { db } from "./firebase"; // Asegúrate de que esta ruta esté correcta
+import { getDocs, collection } from "firebase/firestore";
 
-// No es necesario que conectes Firestore en este caso para agregar al carrito.
-// import { getDocs, collection } from "firebase/firestore";
-// import { db } from "./firebase"; // Ajusta la ruta si es necesario
-
+// Crear el contexto del carrito
 const CartContext = createContext();
 
+// Proveedor del contexto del carrito
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Función para agregar un producto al carrito
   const addToCart = (item) => {
-    setCartItems((prev) => {
-      const updatedCart = [...prev, item];
-      return updatedCart;
-    });
+    setCartItems((prev) => [...prev, item]);
   };
 
   // Función para eliminar un producto del carrito
@@ -25,18 +22,43 @@ export const CartProvider = ({ children }) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // Solo ejecutar este código en el cliente
+  useEffect(() => {
+    // Verifica si estamos en el navegador
+    if (typeof window !== "undefined") {
+      const fetchCartItems = async () => {
+        try {
+          const querySnapshot = await getDocs(collection(db, "cart"));
+          const items = querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          setCartItems(items); // Establecer los productos del carrito
+        } catch (error) {
+          console.error("Error fetching documents: ", error);
+        } finally {
+          setLoading(false); // Una vez cargado, marca como no cargando
+        }
+      };
+
+      fetchCartItems();
+    }
+  }, []); // Solo se ejecuta una vez cuando el componente se monta
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, removeFromCart, loading }}
+    >
       {children}
     </CartContext.Provider>
   );
 };
 
-// Hook para usar el contexto del carrito
+// Hook personalizado para usar el contexto del carrito
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error("useCart debe usarse dentro de un CartProvider");
+    throw new Error("useCart debe ser usado dentro de un CartProvider");
   }
   return context;
 };

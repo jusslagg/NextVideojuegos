@@ -1,4 +1,4 @@
-"use client"; // Necesario en Next.js 13+ para hacer que este componente funcione del lado del cliente
+"use client"; // Asegúrate de que este archivo esté marcado como componente del cliente
 
 import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../../context/CartContext"; // Importamos el hook del contexto
@@ -6,7 +6,7 @@ import Image from "next/image";
 import MenuList from "./menuList"; // Ajusta esta ruta según la estructura
 
 const Navbar = () => {
-  const { cartItems, addToCart } = useCart(); // Accedemos al carrito y funciones
+  const { cartItems } = useCart(); // Accedemos a la cantidad de items en el carrito
 
   return (
     <header className="bg-dark shadow-neon">
@@ -28,9 +28,9 @@ const Navbar = () => {
               size={30}
               className="cursor-pointer text-white transition duration-300 hover:scale-110 hover:brightness-110"
             />
-            {/* Indicador de cantidad de productos en el carrito */}
+            {/* Mostrar la cantidad de items en el carrito */}
             {cartItems.length > 0 && (
-              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
                 {cartItems.length}
               </span>
             )}

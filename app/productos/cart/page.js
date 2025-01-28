@@ -1,5 +1,8 @@
+// 'use client';: esto marca el componente como un "componente del cliente"
+"use client";
+
 import React from "react";
-import { useCart } from "../components/context/CartContext"; // Importa el hook del carrito
+import { useCart } from "../../components/context/CartContext"; // Importa el hook del carrito
 
 const CartPage = () => {
   const { cartItems, removeFromCart, loading } = useCart();
