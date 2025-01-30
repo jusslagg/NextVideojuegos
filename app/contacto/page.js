@@ -1,20 +1,46 @@
 "use client";
-import { useContext } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "../context/AuthContext";
 import Image from "next/image";
+
 export default function Contacto() {
-  const { registerUser, googleLogIn } = useContext(AuthContext);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const router = useRouter();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    const values = {
-      email: e.target.email.value,
-      password: e.target.password.value,
+
+    const contactData = {
+      name,
+      email,
+      message,
     };
-    registerUser(values);
-    router.push("/");
+
+    // Enviar los datos al servidor (API de contacto)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contactData),
+      });
+
+      const data = await res.json();
+
+      // Mostrar mensaje de éxito o error basado en la respuesta
+      if (res.ok) {
+        alert(data.message); // Aquí puedes manejar el mensaje de respuesta
+        router.push("/"); // Redirige a la página principal después de enviar
+      } else {
+        alert("Hubo un error al enviar el formulario. Inténtalo nuevamente.");
+      }
+    } catch (error) {
+      console.error("Error al enviar el formulario:", error);
+      alert("Hubo un error al enviar el formulario. Inténtalo nuevamente.");
+    }
   };
 
   return (
@@ -29,6 +55,8 @@ export default function Contacto() {
             type="text"
             id="name"
             name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-black"
           />
@@ -41,20 +69,23 @@ export default function Contacto() {
             type="email"
             id="email"
             name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-black"
           />
         </div>
         <div>
-          <label htmlFor="password" className="block text-lg font-medium">
-            Contraseña:
+          <label htmlFor="message" className="block text-lg font-medium">
+            Mensaje:
           </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
+          <textarea
+            id="message"
+            name="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-black"
           />
         </div>
         <button
@@ -82,7 +113,7 @@ export default function Contacto() {
           className="object-contain"
         />
         <button
-          onClick={googleLogIn}
+          onClick={() => console.log("Iniciar sesión con Google")} // Aquí debes poner tu lógica de Google Login
           className=" ml-4 text-white font-bold py-2 px-4 rounded"
           aria-label="Ingresar con Google"
         >
