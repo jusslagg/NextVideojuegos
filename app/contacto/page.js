@@ -30,7 +30,7 @@ export default function Contacto() {
             id="name"
             name="name"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-black"
           />
         </div>
         <div>
@@ -42,7 +42,7 @@ export default function Contacto() {
             id="email"
             name="email"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-black"
           />
         </div>
         <div>
