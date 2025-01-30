@@ -1,12 +1,11 @@
+// app/api/contact/route.js
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
   const formData = await request.json();
   const { name, email, message } = formData;
 
-  // Lógica para manejar el mensaje, como guardarlo en la base de datos o enviarlo por correo electrónico.
-  // Aquí puedes agregar tu lógica personalizada.
-
+  // Lógica para manejar el mensaje (guardar en base de datos, enviar correo, etc.)
   return NextResponse.json({
     message: `Gracias, ${name}! Hemos recibido tu mensaje.`,
   });

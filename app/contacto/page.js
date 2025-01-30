@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 
 export default function Contacto() {
   const [name, setName] = useState("");
@@ -12,13 +11,8 @@ export default function Contacto() {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    const contactData = {
-      name,
-      email,
-      message,
-    };
+    const contactData = { name, email, message };
 
-    // Enviar los datos al servidor (API de contacto)
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -30,10 +24,9 @@ export default function Contacto() {
 
       const data = await res.json();
 
-      // Mostrar mensaje de éxito o error basado en la respuesta
       if (res.ok) {
-        alert(data.message); // Aquí puedes manejar el mensaje de respuesta
-        router.push("/"); // Redirige a la página principal después de enviar
+        alert(data.message); // Mensaje de éxito
+        router.push("/"); // Redirigir a la página principal después del envío
       } else {
         alert("Hubo un error al enviar el formulario. Inténtalo nuevamente.");
       }
@@ -95,31 +88,7 @@ export default function Contacto() {
         >
           Enviar
         </button>
-
-        <button
-          onClick={() => router.back()}
-          className="mt-4 bg-red-500 text-white font-bold py-2 px-4 rounded"
-          aria-label="Volver"
-        >
-          Volver
-        </button>
       </form>
-      <div className="flex items-center p-2 rounded-md mt-4">
-        <Image
-          src="/imgoogle.png"
-          alt="Google"
-          width={100}
-          height={100}
-          className="object-contain"
-        />
-        <button
-          onClick={() => console.log("Iniciar sesión con Google")} // Aquí debes poner tu lógica de Google Login
-          className=" ml-4 text-white font-bold py-2 px-4 rounded"
-          aria-label="Ingresar con Google"
-        >
-          Google
-        </button>
-      </div>
     </main>
   );
 }
