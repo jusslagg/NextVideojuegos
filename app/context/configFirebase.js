@@ -21,5 +21,4 @@ if (!getApps().length) {
 const db = getFirestore(app);
 export const auth = getAuth(app);
 
-// Exporta db como una exportación nombrada
-export { db };
+export default db;
