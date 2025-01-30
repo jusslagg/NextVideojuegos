@@ -1,8 +1,8 @@
 "use client";
 
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import { useCart } from "../../lib/cartContext";
+import Navbar from "../../components/layouts/navbar/Navbar";
+import Footer from "../../components/layouts/footer/Footer";
+import { useCart } from "../context/CartContext";
 
 export default function Checkout() {
   const { cartItems, totalAmount } = useCart();
