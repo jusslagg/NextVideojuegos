@@ -46,6 +46,11 @@ const Navbar = () => {
                   Nosotros
                 </Link>
               </li>
+              <li>
+                <Link className="font-bold" href={"/contacto"}>
+                  Login
+                </Link>
+              </li>
               <details className="font-bold">
                 <summary>Videojuegos</summary>
                 <ul className="p-2">
@@ -100,6 +105,9 @@ const Navbar = () => {
             <li>
               <Link className="font-bold" href={"/about"}>
                 Nosotros
+              </Link>
+              <Link className="font-bold" href={"/contacto"}>
+                Login
               </Link>
             </li>
             <li>

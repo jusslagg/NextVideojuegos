@@ -3,7 +3,7 @@ import Navbar from "../components/layouts/navbar/Navbar";
 import Footer from "../components/layouts/footer/Footer";
 import { Providers } from "./Providers";
 import { Montserrat } from "next/font/google";
-
+import { AuthProvider } from "./context/AuthContext";
 export const metadata = {
   title: "GameSphere | Home",
   description:
@@ -19,11 +19,13 @@ export default function RootLayout({ children }) {
     <html lang="es" className={montserrat.className}>
       <body>
         <main>
-          <Providers>
-            <Navbar />
-            {children}
-            <Footer />
-          </Providers>
+          <AuthProvider>
+            <Providers>
+              <Navbar />
+              {children}
+              <Footer />
+            </Providers>
+          </AuthProvider>
         </main>
       </body>
     </html>
