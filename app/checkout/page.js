@@ -5,7 +5,7 @@ import Footer from "../../components/layouts/footer/Footer";
 import { useCart } from "../context/CartContext";
 
 export default function Checkout() {
-  const { cartItems, totalAmount } = useCart();
+  const { cart, getTotalAmount } = useCart(); // Usa cart y getTotalAmount del contexto
 
   return (
     <div className="bg-dark text-white min-h-screen">
@@ -15,16 +15,16 @@ export default function Checkout() {
           Checkout
         </h1>
 
-        {cartItems.length === 0 ? (
+        {cart.length === 0 ? (
           <p className="mt-8 text-center text-foregroundLight">
             No hay productos en el carrito.
           </p>
         ) : (
           <div>
             <div className="mt-8 space-y-6">
-              {cartItems.map((item) => (
+              {cart.map((item) => (
                 <div
-                  key={item.id}
+                  key={item.slug} // Usa `slug` si lo tienes como identificador único
                   className="flex justify-between items-center p-4 bg-foreground rounded-lg shadow-glow"
                 >
                   <div className="flex items-center">
@@ -43,7 +43,8 @@ export default function Checkout() {
             {/* Resumen y botón de pago */}
             <div className="mt-6 p-4 bg-foreground rounded-lg shadow-glow">
               <h2 className="text-xl font-bold text-electric">
-                Total: ${totalAmount}
+                Total: ${getTotalAmount()}{" "}
+                {/* Llama a getTotalAmount para obtener el total */}
               </h2>
               <button className="mt-4 btn btn-primary bg-electric text-dark hover:bg-neonPink">
                 Pagar
