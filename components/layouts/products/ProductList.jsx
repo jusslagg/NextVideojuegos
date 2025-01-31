@@ -13,6 +13,11 @@ const ProductList = async ({ category }) => {
 
     const items = await res.json();
 
+    if (items.message) {
+      // Si la respuesta contiene un mensaje de error (como "No hay productos disponibles")
+      return <p className="text-center text-red-500">{items.message}</p>;
+    }
+
     console.log("Productos obtenidos:", items); // ✅ Depuración de productos
 
     return (
