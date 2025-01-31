@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { db } from "@/app/context/configFirebase";
+import db from "@/app/context/configFirebase"; // Importación por defecto, sin las llaves {}
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 export async function GET(request, { params }) {
-  const { category } = await params;
+  const { category } = params;
 
   let ref;
   if (category === "all") {

@@ -6,9 +6,7 @@ export const mockData = [
     price: 80,
     description: "Shooter, Multijugador",
     imageUrl:
-      "https://res.cloudinary.com/dfmjgsf4x/image/upload/v1728167895/Proyecto%20React/vglynvbxdo8phhajhnja.png",
-    trailerUrl:
-      "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310781/videoplayback_4_ku46zq.mp4",
+      "https://res.cloudinary.com/dmatai2yq/image/upload/v1726080462/apps.5449.13971870865497245.c2434eda-3849-46f0-86f5-08277c1abf9d_idksmq.jpg",
     stock: 12,
     category: "xbox",
   },
@@ -21,9 +19,7 @@ export const mockData = [
     description: "Supervivencia, Multijugador",
     category: "xbox",
     imageUrl:
-      "https://res.cloudinary.com/dfmjgsf4x/image/upload/v1728167894/Proyecto%20React/az5on4ryepgrcienq4c9.png",
-    trailerUrl:
-      "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310712/videoplayback_3_funtgx.mp4",
+      "https://res.cloudinary.com/dmatai2yq/image/upload/v1726080463/Vallheim_kxwinj.png",
   },
   {
     id: "3",
@@ -34,9 +30,7 @@ export const mockData = [
     description: "Supervivencia",
     category: "playstation",
     imageUrl:
-      "https://res.cloudinary.com/dfmjgsf4x/image/upload/v1728167894/Proyecto%20React/ysbi9d8eaju7yiqcxjex.png",
-    trailerUrl:
-      "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310635/videoplayback_2_t8pt2d.mp4",
+      "https://res.cloudinary.com/dmatai2yq/image/upload/v1726080463/the_last_of_us_ibo7wk.png",
   },
   {
     id: "4",
@@ -47,9 +41,7 @@ export const mockData = [
     description: "Estrategia, Multijugador",
     category: "pc",
     imageUrl:
-      "https://res.cloudinary.com/dfmjgsf4x/image/upload/v1728167894/Proyecto%20React/jzl0tminzldx9tjh7wq7.png",
-    trailerUrl:
-      "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310551/StarCraft_II__Heart_of_the_Swarm_-_Intro_cinem%C3%A1tica_ES_tgmq5w.mp4",
+      "https://res.cloudinary.com/dmatai2yq/image/upload/v1726080463/starcraft_nqwxjg.png",
   },
   {
     id: "5",
@@ -60,9 +52,7 @@ export const mockData = [
     description: "Aventura",
     category: "nintendo",
     imageUrl:
-      "https://res.cloudinary.com/dfmjgsf4x/image/upload/v1728167894/Proyecto%20React/mti9gy4jwogks7fl9cti.png",
-    trailerUrl:
-      "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310460/Super_Mario_Odyssey_Accolades_Trailer_-_Nintendo_Switch_yy43zg.mp4",
+      "https://res.cloudinary.com/dmatai2yq/image/upload/v1726080463/super_mario_y3cser.png",
   },
   {
     id: "6",
@@ -73,9 +63,7 @@ export const mockData = [
     description: "Shooter, Multijugador",
     category: "xbox",
     imageUrl:
-      "https://res.cloudinary.com/dfmjgsf4x/image/upload/v1728167894/Proyecto%20React/seqzefr2b5lffb8dl94e.png",
-    trailerUrl:
-      "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310333/videoplayback_1_tni4sz.mp4",
+      "https://res.cloudinary.com/dmatai2yq/image/upload/v1726080463/fornite_cxrhiu.png",
   },
   {
     id: "7",
@@ -86,9 +74,7 @@ export const mockData = [
     description: "Aventura",
     category: "playstation",
     imageUrl:
-      "https://res.cloudinary.com/dfmjgsf4x/image/upload/v1728167894/Proyecto%20React/psmxpyqrforgogh4anar.png",
-    trailerUrl:
-      "https://res.cloudinary.com/dmatai2yq/video/upload/v1737310234/God_of_War_Ragnar%C3%B6k___Tr%C3%A1iler_de_la_historia___PS5_PS4_dnam8y.mp4",
+      "https://res.cloudinary.com/dmatai2yq/image/upload/v1726080463/Vallheim_kxwinj.png",
   },
   {
     id: "8",
@@ -99,8 +85,6 @@ export const mockData = [
     description: "Terror, Multijugador",
     category: "xbox",
     imageUrl:
-      "https://res.cloudinary.com/dfmjgsf4x/image/upload/v1728167893/Proyecto%20React/e1rdvkpswmwtc14tcepo.png",
-    trailerUrl:
-      "https://res.cloudinary.com/dmatai2yq/video/upload/v1737309845/videoplayback_kzjwdw.mp4",
+      "https://res.cloudinary.com/dmatai2yq/image/upload/v1726080462/apps.13651.64366672042187759.733004ed-c696-44cf-98cc-30eddf2375a8_jrkpok.jpg",
   },
 ];
