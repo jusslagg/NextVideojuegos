@@ -1,39 +1,20 @@
 "use client";
-import { useState } from "react";
+import { useContext } from "react";
 import { useRouter } from "next/navigation";
-
+import { AuthContext } from "../context/AuthContext";
+import Image from "next/image";
 export default function Contacto() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const { registerUser, googleLogIn } = useContext(AuthContext);
   const router = useRouter();
 
-  const submitForm = async (e) => {
+  const submitForm = (e) => {
     e.preventDefault();
-
-    const contactData = { name, email, message };
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contactData),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        alert(data.message); // Mensaje de éxito
-        router.push("/"); // Redirigir a la página principal después del envío
-      } else {
-        alert("Hubo un error al enviar el formulario. Inténtalo nuevamente.");
-      }
-    } catch (error) {
-      console.error("Error al enviar el formulario:", error);
-      alert("Hubo un error al enviar el formulario. Inténtalo nuevamente.");
-    }
+    const values = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    registerUser(values);
+    router.push("/");
   };
 
   return (
@@ -48,10 +29,8 @@ export default function Contacto() {
             type="text"
             id="name"
             name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
           />
         </div>
         <div>
@@ -62,23 +41,20 @@ export default function Contacto() {
             type="email"
             id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
           />
         </div>
         <div>
-          <label htmlFor="message" className="block text-lg font-medium">
-            Mensaje:
+          <label htmlFor="password" className="block text-lg font-medium">
+            Contraseña:
           </label>
-          <textarea
-            id="message"
-            name="message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+          <input
+            type="password"
+            id="password"
+            name="password"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
           />
         </div>
         <button
@@ -88,7 +64,31 @@ export default function Contacto() {
         >
           Enviar
         </button>
+
+        <button
+          onClick={() => router.back()}
+          className="mt-4 bg-red-500 text-white font-bold py-2 px-4 rounded"
+          aria-label="Volver"
+        >
+          Volver
+        </button>
       </form>
+      <div className="flex items-center p-2 rounded-md mt-4">
+        <Image
+          src="/imgoogle.png"
+          alt="Google"
+          width={100}
+          height={100}
+          className="object-contain"
+        />
+        <button
+          onClick={googleLogIn}
+          className=" ml-4 text-white font-bold py-2 px-4 rounded"
+          aria-label="Ingresar con Google"
+        >
+          Google
+        </button>
+      </div>
     </main>
   );
 }
