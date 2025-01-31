@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "../context/AuthContext";
 import Image from "next/image";
+
 export default function Contacto() {
   const { registerUser, googleLogIn } = useContext(AuthContext);
   const router = useRouter();
@@ -19,10 +20,13 @@ export default function Contacto() {
 
   return (
     <main className="p-6 max-w-md mx-auto">
-      <h1 className="text-3xl font-bold mb-4 text-center">Contacto</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center text-white">LogIn</h1>
       <form className="space-y-4" onSubmit={submitForm}>
         <div>
-          <label htmlFor="name" className="block text-lg font-medium">
+          <label
+            htmlFor="name"
+            className="block text-lg font-medium text-white"
+          >
             Nombre:
           </label>
           <input
@@ -30,11 +34,14 @@ export default function Contacto() {
             id="name"
             name="name"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-transparent"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-lg font-medium">
+          <label
+            htmlFor="email"
+            className="block text-lg font-medium text-white"
+          >
             Correo Electrónico:
           </label>
           <input
@@ -42,11 +49,14 @@ export default function Contacto() {
             id="email"
             name="email"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-transparent"
           />
         </div>
         <div>
-          <label htmlFor="password" className="block text-lg font-medium">
+          <label
+            htmlFor="password"
+            className="block text-lg font-medium text-white"
+          >
             Contraseña:
           </label>
           <input
@@ -54,7 +64,7 @@ export default function Contacto() {
             id="password"
             name="password"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-black"
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-white bg-transparent"
           />
         </div>
         <button

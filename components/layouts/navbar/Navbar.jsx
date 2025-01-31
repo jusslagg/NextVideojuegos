@@ -46,11 +46,6 @@ const Navbar = () => {
                   Nosotros
                 </Link>
               </li>
-              <li>
-                <Link className="font-bold" href={"/contacto"}>
-                  Login
-                </Link>
-              </li>
               <details className="font-bold">
                 <summary>Videojuegos</summary>
                 <ul className="p-2">
@@ -106,9 +101,6 @@ const Navbar = () => {
               <Link className="font-bold" href={"/about"}>
                 Nosotros
               </Link>
-              <Link className="font-bold" href={"/contacto"}>
-                Login
-              </Link>
             </li>
             <li>
               <details className="font-bold">
@@ -152,6 +144,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
+          {/* Alineamos el login y carrito a la derecha */}
+          <Link href={"/contacto"} className="btn btn-primary mr-2">
+            Login
+          </Link>
           <ThemeController />
           <Link href={"/cart"}>
             <CartWidget />
