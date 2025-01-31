@@ -17,7 +17,7 @@ const ProductList = async ({ category }) => {
 
     return (
       <div className="grid sm:grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center py-3 bg-base-300 sm:px-3">
-        {items.length > 0 ? (
+        {items && items.length > 0 ? ( // ✅ Verificar que `items` no sea null o undefined
           items.map((item) => (
             <ProductCard
               key={item.slug} // ✅ Asegurar que `slug` esté definido
@@ -44,4 +44,4 @@ const ProductList = async ({ category }) => {
   }
 };
 
-export default ProductList; // ✅ Exportación correcta
+export default ProductList;
