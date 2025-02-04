@@ -10,7 +10,7 @@ const About = () => {
         className="hero min-h-screen bg-fixed bg-center"
         style={{
           backgroundImage:
-            "url('https://res.cloudinary.com/dpisx0ysb/image/upload/v1725830829/videojuegos_bg_mhv5py.svg')", // Cambié la imagen de fondo
+            "url('https://res.cloudinary.com/dpisx0ysb/image/upload/v1725830829/videojuegos_bg_mhv5py.svg')",
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
