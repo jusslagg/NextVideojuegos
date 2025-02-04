@@ -19,6 +19,7 @@ if (!getApps().length) {
 }
 
 const db = getFirestore(app);
-export const auth = getAuth(app);
+const auth = getAuth(app);
 
+export { auth };
 export default db; // db es la exportación por defecto
