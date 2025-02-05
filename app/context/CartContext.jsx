@@ -1,7 +1,5 @@
-// CartContext.jsx
-
 "use client";
-import { createContext, useState, useContext } from "react";
+import { createContext, useState } from "react";
 import { useAlert } from "./AlertContext";
 
 export const CartContext = createContext();
@@ -13,6 +11,11 @@ export const CartContextProvider = ({ children }) => {
   const addToCart = (product) => {
     if (!product.slug || !product.quantity || !product.price) {
       console.error("Producto inválido");
+      return;
+    }
+
+    if (product.stock === 0) {
+      showAlert("Este producto está agotado", "error");
       return;
     }
 
@@ -61,10 +64,9 @@ export const CartContextProvider = ({ children }) => {
 
   const getTotalQuantityById = (slug) => {
     let product = cart.find((element) => element.slug === slug);
-    return product ? product.quantity : 1;
+    return product ? product.quantity : 0;
   };
-
-  const data = {
+  let data = {
     cart,
     addToCart,
     deleteProductById,
@@ -73,11 +75,5 @@ export const CartContextProvider = ({ children }) => {
     clearCart,
     getTotalQuantityById,
   };
-
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
-};
-
-// Agregar el hook useCart que se exporta
-export const useCart = () => {
-  return useContext(CartContext);
 };
