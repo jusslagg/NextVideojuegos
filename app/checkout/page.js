@@ -1,11 +1,23 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Navbar from "../../components/layouts/navbar/Navbar";
 import Footer from "../../components/layouts/footer/Footer";
 import { useCart } from "../context/CartContext";
 
 export default function Checkout() {
-  const { cart, getTotalAmount } = useCart(); // Usa cart y getTotalAmount del contexto
+  const [isClient, setIsClient] = useState(false); // Estado para saber si estamos en el cliente
+  const { cart, getTotalAmount } = useCart(); // Usamos el contexto
+
+  // Efecto para asegurarnos de que el hook solo se ejecute en el cliente
+  useEffect(() => {
+    setIsClient(true); // Cambiamos el estado cuando la página se renderiza en el cliente
+  }, []);
+
+  // Si no estamos en el cliente, no renderizamos nada (esto evita el error de prerenderización)
+  if (!isClient) {
+    return null; // O podrías mostrar un spinner o mensaje de carga
+  }
 
   return (
     <div className="bg-dark text-white min-h-screen">
