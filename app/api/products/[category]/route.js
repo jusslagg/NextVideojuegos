@@ -1,40 +1,24 @@
-// app/api/products/[category]/route.js
-
+import { NextResponse } from "next/server";
 import { db } from "@/app/context/configFirebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { NextResponse } from "next/server";
 
 export async function GET(request, { params }) {
-  const { category } = params;
+  const { category } = await params;
 
-  // Verifica que 'category' no sea undefined ni vacío
-  if (!category) {
-    return NextResponse.json(
-      { error: "Category is required" },
-      { status: 400 }
-    );
+  let ref;
+  if (category === "todos") {
+    ref = query(collection(db, "products"));
+  } else {
+    ref = query(collection(db, "products"), where("category", "==", category));
   }
 
-  try {
-    const ref = collection(db, "products");
-    const q = query(ref, where("category", "==", category));
+  const querySnapshot = await getDocs(ref);
+  const products = querySnapshot.docs.map((doc) => doc.data());
 
-    const querySnapshot = await getDocs(q);
-    const data = querySnapshot.docs.map((doc) => doc.data());
+  const sortedProducts = products.sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
+  const data = sortedProducts;
 
-    if (data.length === 0) {
-      return NextResponse.json(
-        { error: "No products found for this category" },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("Error retrieving products:", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(data);
 }
