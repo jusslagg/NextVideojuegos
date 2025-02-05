@@ -1,8 +1,11 @@
 "use client";
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 import { useAlert } from "./AlertContext";
 
 export const CartContext = createContext();
+
+// Aquí estamos creando un hook `useCart` que va a ser exportado
+export const useCart = () => useContext(CartContext);
 
 export const CartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
@@ -19,7 +22,7 @@ export const CartContextProvider = ({ children }) => {
       return;
     }
 
-    let exist = cart.some((element) => element.slug === product.slug); //boolean
+    let exist = cart.some((element) => element.slug === product.slug);
 
     if (exist) {
       let newArray = cart.map((element) => {
@@ -66,6 +69,7 @@ export const CartContextProvider = ({ children }) => {
     let product = cart.find((element) => element.slug === slug);
     return product ? product.quantity : 0;
   };
+
   let data = {
     cart,
     addToCart,
@@ -75,5 +79,6 @@ export const CartContextProvider = ({ children }) => {
     clearCart,
     getTotalQuantityById,
   };
+
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };
