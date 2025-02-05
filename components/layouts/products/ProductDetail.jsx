@@ -1,32 +1,52 @@
+"use client"; // Marca este archivo como un componente de cliente
+
+import { useEffect, useState } from "react";
 import ProductDetailCard from "./ProductDetailCard";
 
-const ProductDetail = async ({ slug }) => {
-  try {
-    const response = await fetch(`http://localhost:3000/api/product/${slug}`, {
-      cache: "no-store",
-    });
+const ProductDetail = ({ slug }) => {
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    if (!response.ok) {
-      // Si la respuesta no es correcta (por ejemplo, un 404 o 500), lanzamos un error
-      throw new Error(`Error al cargar el producto: ${response.statusText}`);
-    }
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/product/${slug}`,
+          {
+            cache: "no-store",
+          }
+        );
 
-    // Si la respuesta es correcta, la parseamos a JSON
-    const item = await response.json();
+        if (!response.ok) {
+          throw new Error(
+            `Error al cargar el producto: ${response.statusText}`
+          );
+        }
 
-    // Si el resultado es un array, tomamos el primer elemento
-    const product = Array.isArray(item) ? item[0] : item;
+        const item = await response.json();
+        const product = Array.isArray(item) ? item[0] : item;
 
-    return (
-      <>
-        <ProductDetailCard item={product} />
-      </>
-    );
-  } catch (error) {
-    // Si ocurre un error durante la solicitud o el parseo, lo mostramos en consola
-    console.error("Error al cargar los detalles del producto:", error);
-    return <div>Hubo un error al cargar el producto.</div>;
+        setProduct(product); // Establece los datos del producto
+      } catch (error) {
+        setError(error.message); // Establece el mensaje de error
+      } finally {
+        setLoading(false); // Marca que la carga ha terminado
+      }
+    };
+
+    fetchProduct();
+  }, [slug]); // Se ejecuta cuando cambia el 'slug'
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return <ProductDetailCard item={product} />;
 };
 
 export default ProductDetail;
