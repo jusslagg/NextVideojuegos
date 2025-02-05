@@ -90,9 +90,30 @@ const Cart = ({ cart, deleteProductById, totalQuantity, total, clearCart }) => {
               ¡Volvamos a llenar el carrito con tus juegos favoritos! 🕹️
             </p>
           </div>
-          <div>
-            <Link href="/products/all" className="btn btn-primary mt-5">
-              Explorar Juegos
+          <div className="space-y-3 mt-5">
+            <Link
+              href="/products/xbox"
+              className="btn bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 text-white font-bold py-3 px-6 rounded-full hover:scale-105 transition-all duration-300"
+            >
+              Xbox
+            </Link>
+            <Link
+              href="/products/playstation"
+              className="btn bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 text-white font-bold py-3 px-6 rounded-full hover:scale-105 transition-all duration-300"
+            >
+              Playstation
+            </Link>
+            <Link
+              href="/products/nintendo"
+              className="btn bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 text-white font-bold py-3 px-6 rounded-full hover:scale-105 transition-all duration-300"
+            >
+              Nintendo
+            </Link>
+            <Link
+              href="/products/pc"
+              className="btn bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 text-white font-bold py-3 px-6 rounded-full hover:scale-105 transition-all duration-300"
+            >
+              PC
             </Link>
           </div>
         </div>
