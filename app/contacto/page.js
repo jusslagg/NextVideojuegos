@@ -1,10 +1,11 @@
 "use client";
-import { useAuthContext } from "../context/AuthContext"; // Usamos el hook para acceder al contexto
+import { useContext } from "react";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "../context/AuthContext";
 import Image from "next/image";
 
 export default function Contacto() {
-  const { registerUser, googleLogIn } = useAuthContext(); // Usamos el hook para acceder al contexto
+  const { registerUser, googleLogIn } = useContext(AuthContext);
   const router = useRouter();
 
   const submitForm = (e) => {
@@ -13,8 +14,8 @@ export default function Contacto() {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    registerUser(values); // Llamamos al método del contexto para registrar al usuario
-    router.push("/"); // Redirige al usuario a la página principal
+    registerUser(values);
+    router.push("/");
   };
 
   return (
@@ -91,8 +92,8 @@ export default function Contacto() {
           className="object-contain"
         />
         <button
-          onClick={googleLogIn} // Llamamos al login de Google aquí
-          className="ml-4 text-white font-bold py-2 px-4 rounded"
+          onClick={googleLogIn}
+          className=" ml-4 text-white font-bold py-2 px-4 rounded"
           aria-label="Ingresar con Google"
         >
           Google
