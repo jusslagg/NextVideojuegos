@@ -14,6 +14,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// Exporta la base de datos y autenticación para que puedas usarlos en otros archivos
 export const db = getFirestore(app);
+
 export const auth = getAuth(app);

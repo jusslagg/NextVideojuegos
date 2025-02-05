@@ -1,40 +1,15 @@
 import { db } from "@/app/context/configFirebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { NextResponse } from "next/server";
 
-export async function GET(req, { params }) {
-  // Esperamos a que los params estén disponibles
-  const { slug } = await params; // Se agrega await aquí para acceder correctamente a los parámetros
+export async function GET(request, { params }) {
+  const { slug } = await params;
 
-  if (!slug) {
-    return new Response("El slug es necesario para realizar la solicitud", {
-      status: 400,
-    });
-  }
+  const ref = collection(db, "products");
+  const q = query(ref, where("slug", "==", slug));
 
-  try {
-    // Consulta a Firestore para obtener el producto con el slug especificado
-    const productsRef = collection(db, "products");
-    const q = query(productsRef, where("slug", "==", slug));
-    const querySnapshot = await getDocs(q);
+  const querySnapshot = await getDocs(q);
+  const data = querySnapshot.docs.map((doc) => doc.data());
 
-    // Si no se encuentra el producto
-    if (querySnapshot.empty) {
-      return new Response("Producto no encontrado", { status: 404 });
-    }
-
-    // Si encontramos el producto, lo devolvemos
-    const product = querySnapshot.docs[0].data();
-    return new Response(JSON.stringify(product), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  } catch (error) {
-    // Si ocurre un error en la consulta
-    console.error("Error al obtener el producto:", error);
-    return new Response(`Error al obtener el producto: ${error.message}`, {
-      status: 500,
-    });
-  }
+  return NextResponse.json(data);
 }

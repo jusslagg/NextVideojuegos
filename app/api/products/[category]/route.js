@@ -6,7 +6,7 @@ export async function GET(request, { params }) {
   const { category } = await params;
 
   let ref;
-  if (category === "todos") {
+  if (category === "all") {
     ref = query(collection(db, "products"));
   } else {
     ref = query(collection(db, "products"), where("category", "==", category));
