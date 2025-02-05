@@ -22,12 +22,34 @@ export default function Home() {
             de títulos para todas las plataformas. ¡Prepárate para jugar como
             nunca antes!
           </p>
-          <Link
-            href="/products/all"
-            className="btn bg-neonPink text-black hover:bg-transparent border-2 border-neonPink transition-colors font-bold"
-          >
-            Ver videojuegos
-          </Link>
+
+          {/* Botones para cada plataforma */}
+          <div className="space-x-4">
+            <Link
+              href="/products/xbox"
+              className="btn bg-neonPink text-white hover:bg-transparent border-2 border-neonPink transition-colors font-bold"
+            >
+              Xbox
+            </Link>
+            <Link
+              href="/products/playstation"
+              className="btn bg-neonPink text-white hover:bg-transparent border-2 border-neonPink transition-colors font-bold"
+            >
+              Playstation
+            </Link>
+            <Link
+              href="/products/nintendo"
+              className="btn bg-neonPink text-white hover:bg-transparent border-2 border-neonPink transition-colors font-bold"
+            >
+              Nintendo
+            </Link>
+            <Link
+              href="/products/pc"
+              className="btn bg-neonPink text-white hover:bg-transparent border-2 border-neonPink transition-colors font-bold"
+            >
+              PC
+            </Link>
+          </div>
         </div>
       </div>
 

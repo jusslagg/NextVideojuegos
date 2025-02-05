@@ -1,17 +1,11 @@
+// /components/Navbar.js
+
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import ThemeController from "../../common/themeController/ThemeController";
 import CartWidget from "@/components/common/cartWidget/CartWidget";
-
-export const metadata = {
-  title: "GameSphere | Home",
-  description:
-    "La tienda de videojuegos futurista con las mejores opciones para vos",
-  keywords:
-    "videojuegos, GameSphere, ecommerce, xbox, playstation, nintendo, pc",
-};
 
 const Navbar = () => {
   const router = useRouter();
@@ -49,31 +43,32 @@ const Navbar = () => {
               <details className="font-bold">
                 <summary>Videojuegos</summary>
                 <ul className="p-2">
+                  {/* Aquí cambiamos "Todos los videojuegos" por las opciones */}
                   <li>
-                    <button
-                      onClick={() => router.push("/products/all")}
-                      className="btn btn-ghost p-0"
-                    >
-                      Todos los videojuegos
-                    </button>
                     <button
                       onClick={() => router.push("/products/xbox")}
                       className="btn btn-ghost p-0"
                     >
                       Xbox
                     </button>
+                  </li>
+                  <li>
                     <button
                       onClick={() => router.push("/products/playstation")}
                       className="btn btn-ghost p-0"
                     >
                       Playstation
                     </button>
+                  </li>
+                  <li>
                     <button
                       onClick={() => router.push("/products/nintendo")}
                       className="btn btn-ghost p-0"
                     >
                       Nintendo
                     </button>
+                  </li>
+                  <li>
                     <button
                       onClick={() => router.push("/products/pc")}
                       className="btn btn-ghost p-0"
@@ -106,31 +101,32 @@ const Navbar = () => {
               <details className="font-bold">
                 <summary>Videojuegos</summary>
                 <ul className="p-2 w-52 z-10">
+                  {/* Aquí cambiamos "Todos los videojuegos" por las opciones */}
                   <li>
-                    <button
-                      onClick={() => router.push("/products/all")}
-                      className="btn btn-ghost p-0"
-                    >
-                      Todos los videojuegos
-                    </button>
                     <button
                       onClick={() => router.push("/products/xbox")}
                       className="btn btn-ghost p-0"
                     >
                       Xbox
                     </button>
+                  </li>
+                  <li>
                     <button
                       onClick={() => router.push("/products/playstation")}
                       className="btn btn-ghost p-0"
                     >
                       Playstation
                     </button>
+                  </li>
+                  <li>
                     <button
                       onClick={() => router.push("/products/nintendo")}
                       className="btn btn-ghost p-0"
                     >
                       Nintendo
                     </button>
+                  </li>
+                  <li>
                     <button
                       onClick={() => router.push("/products/pc")}
                       className="btn btn-ghost p-0"
