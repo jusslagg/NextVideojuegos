@@ -2,7 +2,8 @@ import { db } from "@/app/context/configFirebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 export async function GET(req, { params }) {
-  const { slug } = params; // Extrae el slug de los parámetros de la URL
+  // Esperamos a que los params estén disponibles
+  const { slug } = await params; // Se agrega await aquí para acceder correctamente a los parámetros
 
   if (!slug) {
     return new Response("El slug es necesario para realizar la solicitud", {
