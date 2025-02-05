@@ -50,12 +50,12 @@ const Navbar = () => {
                 <summary>Videojuegos</summary>
                 <ul className="p-2">
                   <li>
-                    {/* <button
+                    <button
                       onClick={() => router.push("/products/all")}
                       className="btn btn-ghost p-0"
                     >
                       Todos los videojuegos
-                    </button> */}
+                    </button>
                     <button
                       onClick={() => router.push("/products/xbox")}
                       className="btn btn-ghost p-0"
@@ -107,12 +107,12 @@ const Navbar = () => {
                 <summary>Videojuegos</summary>
                 <ul className="p-2 w-52 z-10">
                   <li>
-                    {/* <button
+                    <button
                       onClick={() => router.push("/products/all")}
                       className="btn btn-ghost p-0"
                     >
                       Todos los videojuegos
-                    </button> */}
+                    </button>
                     <button
                       onClick={() => router.push("/products/xbox")}
                       className="btn btn-ghost p-0"
