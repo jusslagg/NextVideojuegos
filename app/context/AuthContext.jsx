@@ -1,100 +1,107 @@
-"use client";
-import { auth } from "./configFirebase";
+"use client"; // Indicamos que es código que debe ejecutarse en el lado del cliente
+
+import React, { createContext, useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  onAuthStateChanged,
-  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
-import { createContext, useEffect, useContext, useState } from "react";
-import { useRouter } from "next/navigation";
+import { auth } from "../context/configFirebase"; // Asegúrate de tener correctamente configurado Firebase en este archivo
 
-const AuthContext = createContext();
-
-export const useAuthContext = () => useContext(AuthContext);
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
+  const googleProvider = new GoogleAuthProvider();
+
+  const [user, setUser] = useState({
+    email: null,
+    uid: null,
+  });
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
+    // Revisa si ya hay un usuario autenticado cuando la app se monta
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        setUser({
+          email: currentUser.email,
+          uid: currentUser.uid,
+        });
+      } else {
+        setUser({ email: null, uid: null });
+      }
     });
-    return () => unsubscribe();
+    return () => unsubscribe(); // Limpiar el suscriptor al desmontar el componente
   }, []);
 
-  const registerUser = async ({ email, password }) => {
-    setLoading(true);
+  const registerUser = async (values) => {
     try {
+      // Registrar el usuario con email y contraseña
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        email,
-        password
+        values.email,
+        values.password
       );
-      setUser(userCredential.user);
-      router.push("/admin");
-      setLoading(false);
+      const user = userCredential.user;
+
+      // Añadir nombre de usuario como propiedad personalizada (opcional, no lo guarda en Firebase por defecto)
+      // Si lo deseas agregar al perfil, puedes utilizar el `updateProfile` de Firebase, pero depende de tu caso.
+      await user.updateProfile({
+        displayName: values.userName,
+      });
+
+      setUser({
+        email: user.email,
+        uid: user.uid,
+      });
     } catch (error) {
-      console.error("Error al registrar el usuario:", error.message);
+      console.log("Error al registrar el usuario:", error);
     }
   };
 
-  const loginUser = async ({ email, password }) => {
-    setLoading(true);
+  const loginUser = async (email, password) => {
     try {
+      // Intentar iniciar sesión con Firebase
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
-      setLoading(false);
+
+      // Establecer el usuario en el contexto
       setUser(userCredential.user);
-      router.push("/admin");
+
+      console.log("Usuario autenticado:", userCredential.user);
+      return { success: true };
     } catch (error) {
-      console.error("Error al iniciar sesión:", error.message);
+      // Manejar errores específicos de autenticación
+      console.error("Error al iniciar sesión:", error);
+
+      if (error.code === "auth/user-not-found") {
+        throw new Error("Usuario no encontrado. Verifica tu correo.");
+      } else if (error.code === "auth/wrong-password") {
+        throw new Error("Contraseña incorrecta. Intenta nuevamente.");
+      } else {
+        throw new Error("Ocurrió un error inesperado. Intenta nuevamente.");
+      }
     }
   };
 
-  const resetPassword = async (email) => {
+  const googleLogin = async () => {
     try {
-      await sendPasswordResetEmail(auth, email);
-      alert("Se ha enviado un correo para restablecer tu contraseña");
+      // Iniciar sesión con Google
+      const userCredential = await signInWithPopup(auth, googleProvider);
+      setUser(userCredential.user);
     } catch (error) {
-      console.error(
-        "Error al enviar el correo para restablecer la contraseña:",
-        error.message
-      );
-    }
-  };
-
-  const logout = async () => {
-    try {
-      await signOut(auth);
-      setUser(null);
-      router.push("/admin");
-    } catch (error) {
-      console.error("Error al cerrar sesión:", error.message);
+      console.log("Error al iniciar sesión con Google:", error);
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        registerUser,
-        loginUser,
-        resetPassword,
-        logout,
-      }}
+      value={{ user, registerUser, googleLogin, loginUser }}
     >
       {children}
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;

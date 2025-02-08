@@ -37,6 +37,24 @@ const Navbar = () => {
                 <Link className="font-bold" href={"/about"}>
                   Conocenos
                 </Link>
+                <Link
+                  href="/contacto"
+                  className="font-normal hover:font-bold text-2xl font-regular"
+                >
+                  <i className="fab fa-youtube"></i> Contacto
+                </Link>
+                <Link
+                  href="/login"
+                  className="font-normal hover:font-regular text-2xl font-regular"
+                >
+                  <i className="fab fa-youtube"></i> Ingresar
+                </Link>
+                <Link
+                  href="/register"
+                  className="font-normal hover:font-bold text-2xl font-regular"
+                >
+                  <i className="fab fa-youtube"></i> Registrarse
+                </Link>
               </li>
               <details className="font-bold">
                 <summary>Videojuegos</summary>
@@ -95,6 +113,7 @@ const Navbar = () => {
             />
           </Link>
         </div>
+
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
@@ -151,8 +170,15 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+
         <div className="navbar-end">
-          {/* Alineamos el login y carrito a la derecha */}
+          {/* Botones de Login y Registrarse */}
+          <Link href={"/login"} className="btn btn-primary mr-2">
+            Ingresar
+          </Link>
+          <Link href={"/register"} className="btn btn-primary mr-2">
+            Registrarse
+          </Link>
           <ThemeController />
           <Link href={"/cart"}>
             <CartWidget />
