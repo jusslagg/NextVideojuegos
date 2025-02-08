@@ -1,5 +1,3 @@
-// /components/Navbar.js
-
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -37,13 +35,20 @@ const Navbar = () => {
             >
               <li>
                 <Link className="font-bold" href={"/about"}>
-                  Nosotros
+                  Conocenos
                 </Link>
               </li>
               <details className="font-bold">
                 <summary>Videojuegos</summary>
                 <ul className="p-2">
-                  {/* Aquí cambiamos "Todos los videojuegos" por las opciones */}
+                  <li>
+                    <button
+                      onClick={() => router.push("/products/todos")}
+                      className="btn btn-ghost p-0"
+                    >
+                      Todos los videojuegos
+                    </button>
+                  </li>
                   <li>
                     <button
                       onClick={() => router.push("/products/xbox")}
@@ -94,14 +99,21 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link className="font-bold" href={"/about"}>
-                Nosotros
+                Conocenos
               </Link>
             </li>
             <li>
               <details className="font-bold">
                 <summary>Videojuegos</summary>
                 <ul className="p-2 w-52 z-10">
-                  {/* Aquí cambiamos "Todos los videojuegos" por las opciones */}
+                  <li>
+                    <button
+                      onClick={() => router.push("/products/todos")}
+                      className="btn btn-ghost p-0"
+                    >
+                      Todos los videojuegos
+                    </button>
+                  </li>
                   <li>
                     <button
                       onClick={() => router.push("/products/xbox")}
@@ -141,9 +153,6 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {/* Alineamos el login y carrito a la derecha */}
-          <Link href={"/contacto"} className="btn btn-primary mr-2">
-            Login
-          </Link>
           <ThemeController />
           <Link href={"/cart"}>
             <CartWidget />

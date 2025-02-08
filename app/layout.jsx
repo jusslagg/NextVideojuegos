@@ -19,13 +19,11 @@ export default function RootLayout({ children }) {
     <html lang="es" className={montserrat.className}>
       <body>
         <main>
-          <AuthProvider>
-            <Providers>
-              <Navbar />
-              {children}
-              <Footer />
-            </Providers>
-          </AuthProvider>
+          <Providers>
+            <Navbar />
+            {children}
+            <Footer />
+          </Providers>
         </main>
       </body>
     </html>

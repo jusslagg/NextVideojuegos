@@ -1,50 +1,100 @@
 "use client";
+import { auth } from "./configFirebase";
 import {
   createUserWithEmailAndPassword,
-  signInWithPopup,
-  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
-import { auth } from "./configFirebase";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useContext, useState } from "react";
+import { useRouter } from "next/navigation";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const provider = new GoogleAuthProvider();
-  //  const providerApple = new AppleAuthProvider(); IMPORTAR EN FIREBASE/AUTH
-  //  const providerFacebook = new FacebookAuthProvider(); IMPORTAR EN FIREBASE/AUTH
-  const [user, setUser] = useState({
-    email: null,
-    uid: null,
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-  //Creamos un usuario pasando parametro email y pass
-  const registerUser = async (values) => {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const registerUser = async ({ email, password }) => {
+    setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        values.email,
-        values.password
+        email,
+        password
       );
-      const user = userCredential.user;
-      setUser({
-        email: user.email,
-        uid: user.uid,
-      });
+      setUser(userCredential.user);
+      router.push("/admin");
+      setLoading(false);
     } catch (error) {
-      console.error("Error registering user:", error);
-      // Optionally, handle the error (e.g., show a message to the user)
+      console.error("Error al registrar el usuario:", error.message);
     }
   };
 
-  //Ingresar con el PopUp de google
-  const googleLogIn = async () => {
-    await signInWithPopup(auth, provider);
+  const loginUser = async ({ email, password }) => {
+    setLoading(true);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setLoading(false);
+      setUser(userCredential.user);
+      router.push("/admin");
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error.message);
+    }
+  };
+
+  const resetPassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Se ha enviado un correo para restablecer tu contraseña");
+    } catch (error) {
+      console.error(
+        "Error al enviar el correo para restablecer la contraseña:",
+        error.message
+      );
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      router.push("/admin");
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error.message);
+    }
   };
 
   return (
-    <AuthContext.Provider value={{ user, registerUser, googleLogIn }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        registerUser,
+        loginUser,
+        resetPassword,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
+
+export default AuthProvider;

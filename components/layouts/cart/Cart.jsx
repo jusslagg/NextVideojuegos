@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import GoBack from "@/components/common/buttons/GoBack";
 
 const Cart = ({ cart, deleteProductById, totalQuantity, total, clearCart }) => {
   return (
